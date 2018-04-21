@@ -5,11 +5,8 @@ from __future__ import unicode_literals
 AUTHOR = 'Su Henian'
 SITENAME = 'idiip site'
 SITEURL = ''
-
 PATH = 'content'
-
 TIMEZONE = 'Asia/Hong_Kong'
-
 DEFAULT_LANG = 'en'
 DEFAULT_CATEGORY = 'articles'
 
@@ -41,6 +38,7 @@ SITESUBTITLE = 'I did it in Python.'
 SITELOGO = SITEURL + '/images/me.png'
 
 MAIN_MENU = True
+DISABLE_URL_HASH = True
 
 COPYRIGHT_NAME = 'Jiinii.com'
 COPYRIGHT_YEAR = 2018
