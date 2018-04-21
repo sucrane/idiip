@@ -11,6 +11,7 @@ PATH = 'content'
 TIMEZONE = 'Asia/Hong_Kong'
 
 DEFAULT_LANG = 'en'
+DEFAULT_CATEGORY = 'articles'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -37,10 +38,9 @@ RELATIVE_URLS = True
 THEME = 'Flex'
 SITETITLE = 'idiip'
 SITESUBTITLE = 'I did it in Python.'
-SITELOGO = '/images/me.png'
+SITELOGO = SITEURL + '/images/me.png'
 
 MAIN_MENU = True
 
 COPYRIGHT_NAME = 'Jiinii.com'
 COPYRIGHT_YEAR = 2018
-

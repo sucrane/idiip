@@ -8,15 +8,15 @@ PELICANOPTS=
 
 BASEDIR=$(pwd)
 INPUTDIR=$BASEDIR/content
-OUTPUTDIR=$BASEDIR/output
+OUTPUTDIR=$BASEDIR/docs
 CONFFILE=$BASEDIR/pelicanconf.py
 
 ###
 # Don't change stuff below here unless you are sure
 ###
 
-SRV_PID=$BASEDIR/srv.pid
-PELICAN_PID=$BASEDIR/pelican.pid
+SRV_PID=$BASEDIR/.srv.pid
+PELICAN_PID=$BASEDIR/.pelican.pid
 
 function usage(){
   echo "usage: $0 (stop) (start) (restart) [port]"
