@@ -1,5 +1,5 @@
 Title: Serial Programming in Raspberry Pi
-Date: 2018-03-13
+Date: 2018-03-14
 
 Raspberry Pi uses serial port for console tty. In order to use this serial port to communicate with Mac machine, we will temporarily disable getty service:
 

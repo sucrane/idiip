@@ -1,5 +1,5 @@
 Title: Sending Mail in Python
-Date: 2018-03-11
+Date: 2018-03-12
 
 We need to send mails sometimes, e.g. report sending service. `email` module in Python will work this for us.
 

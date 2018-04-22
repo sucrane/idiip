@@ -1,5 +1,5 @@
 Title: Bluetooth Programming in Raspberry Pi
-Date: 2018-03-12
+Date: 2018-03-13
 
 [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) comes with added wireless LAN and Bluetooth connectiviy. We can use [PyBluez](https://pybluez.github.io/) library to program Bluetooth in Python.
 
