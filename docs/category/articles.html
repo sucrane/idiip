@@ -75,6 +75,30 @@
 
 <article>
   <header>
+    <h2><a href="../charset-handling-in-python.html">Charset Handling in Python</a></h2>
+    <p>
+          Posted on Tue 13 March 2018 in <a href="../category/articles.html">articles</a>
+
+
+
+    </p>
+  </header>
+  <div>
+      <p>As we know, Python 3 treats all string using UTF-8, and it is great. Sometimes, we need to unzip some zip files which come from Windows machine.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Unzip the zipfile to a folder.</span>
+<span class="n">zf</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zipped_file_full_path</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">zf</span><span class="o">.</span><span class="n">namelist</span><span class="p">():</span>
+    <span class="c1"># FIXME: Need to handle path string encoding.</span>
+    <span class="n">new_name …</span></pre></div>
+      <br>
+      <a class="btn" href="../charset-handling-in-python.html">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="../protobuf-in-python.html">Protobuf in Python</a></h2>
     <p>
           Posted on Tue 13 March 2018 in <a href="../category/articles.html">articles</a>
