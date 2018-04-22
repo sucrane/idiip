@@ -30,4 +30,32 @@ ExecStartPost=/bin/chmod 777 /var/run/sdp
 ExecStartPost=/bin/hciconfig hci0 piscan
 ```
 
+The modified `dbus-org.bluez.service` is like this:
+
+```
+[Unit]
+Description=Bluetooth service
+Documentation=man:bluetoothd(8)
+ConditionPathIsDirectory=/sys/class/bluetooth
+
+[Service]
+Type=dbus
+BusName=org.bluez
+ExecStart=/usr/lib/bluetooth/bluetoothd -C
+ExecStartPost=/usr/bin/sdptool add SP
+ExecStartPost=/bin/chmod 777 /var/run/sdp
+ExecStartPost=/bin/hciconfig hci0 piscan
+NotifyAccess=main
+#WatchdogSec=10
+#Restart=on-failure
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+LimitNPROC=1
+ProtectHome=true
+ProtectSystem=full
+
+[Install]
+WantedBy=bluetooth.target
+Alias=dbus-org.bluez.service
+```
+
 Then reboot Raspberry Pi.

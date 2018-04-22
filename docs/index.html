@@ -74,6 +74,36 @@
 
 <article>
   <header>
+    <h2><a href="./autostart-service-in-raspberry-pi.html">Autostart Service in Raspberry Pi</a></h2>
+    <p>
+          Posted on Tue 20 March 2018 in <a href="./category/raspberry-pi.html">raspberry-pi</a>
+
+
+
+    </p>
+  </header>
+  <div>
+      <p>If our application needs to autostart as a service in Raspberry Pi, we will write a simple <code>systemd</code> service file.</p>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Example Application</span>
+<span class="na">After</span><span class="o">=</span><span class="s">bluetooth.service</span>
+<span class="na">Requires</span><span class="o">=</span><span class="s">bluetooth.service</span>
+
+<span class="k">[Service]</span>
+<span class="na">PermissionsStartOnly</span><span class="o">=</span><span class="s">true</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">User</span><span class="o">=</span><span class="s">pi</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">pi</span>
+<span class="na">ExecStartPre</span><span class="o">=</span><span class="s">/bin/mkdir -p /var/log/example_app</span>
+<span class="na">ExecStartPre</span><span class="o">=</span><span class="s">/bin/chown pi …</span></pre></div>
+      <br>
+      <a class="btn" href="./autostart-service-in-raspberry-pi.html">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="./charset-handling-in-python.html">Charset Handling in Python</a></h2>
     <p>
           Posted on Tue 13 March 2018 in <a href="./category/articles.html">articles</a>

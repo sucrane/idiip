@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="./theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="./theme/pygments/solarized-dark.min.css">
+  <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-117999375-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+<meta name="author" content="Su Henian" />
+<meta name="description" content="If our application needs to autostart as a service in Raspberry Pi, we will write a simple systemd service file. [Unit] Description=Example Application After=bluetooth.service Requires=bluetooth.service [Service] PermissionsStartOnly=true Type=simple User=pi Group=pi ExecStartPre=/bin/mkdir -p /var/log/example_app ExecStartPre=/bin/chown pi …" />
+<meta name="keywords" content="">
+
+<meta property="og:site_name" content="idiip site"/>
+<meta property="og:title" content="Autostart Service in Raspberry Pi"/>
+<meta property="og:description" content="If our application needs to autostart as a service in Raspberry Pi, we will write a simple systemd service file. [Unit] Description=Example Application After=bluetooth.service Requires=bluetooth.service [Service] PermissionsStartOnly=true Type=simple User=pi Group=pi ExecStartPre=/bin/mkdir -p /var/log/example_app ExecStartPre=/bin/chown pi …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="./autostart-service-in-raspberry-pi.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2018-03-20 00:00:00+08:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="./author/su-henian.html">
+<meta property="article:section" content="raspberry-pi"/>
+<meta property="og:image" content="https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200">
+
+  <title>idiip site &ndash; Autostart Service in Raspberry Pi</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href=".">
+        <img src="https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200" alt="idiip" title="idiip">
+      </a>
+      <h1><a href=".">idiip</a></h1>
+
+<p>I did it in Python.</p>
+
+      <ul class="social">
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href=".">    Home
+</a>
+
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="autostart-service-in-raspberry-pi">Autostart Service in Raspberry Pi</h1>
+    <p>
+          Posted on Tue 20 March 2018 in <a href="./category/raspberry-pi.html">raspberry-pi</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>If our application needs to autostart as a service in Raspberry Pi, we will write a simple <code>systemd</code> service file.</p>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Example Application</span>
+<span class="na">After</span><span class="o">=</span><span class="s">bluetooth.service</span>
+<span class="na">Requires</span><span class="o">=</span><span class="s">bluetooth.service</span>
+
+<span class="k">[Service]</span>
+<span class="na">PermissionsStartOnly</span><span class="o">=</span><span class="s">true</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">User</span><span class="o">=</span><span class="s">pi</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">pi</span>
+<span class="na">ExecStartPre</span><span class="o">=</span><span class="s">/bin/mkdir -p /var/log/example_app</span>
+<span class="na">ExecStartPre</span><span class="o">=</span><span class="s">/bin/chown pi:pi /var/log/example_app</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/pi/bin/example-app</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">on-abort</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+
+
+<p>The key point here is that our application needs Bluetooth service before it can run. So we put</p>
+<div class="highlight"><pre><span></span>After=bluetooth.service
+Requires=bluetooth.service
+</pre></div>
+
+
+<p>in the <code>[Unit]</code> section.</p>
+<p>Copy the above file to <code>/lib/systemd/system/</code>, and do the following:</p>
+<div class="highlight"><pre><span></span>$ sudo chmod <span class="m">644</span> /lib/systemd/system/example-app.service
+$ sudo systemctl <span class="nb">enable</span> example-app.service
+$ sudo reboot
+</pre></div>
+
+
+<p>Besides, you can manually start/stop the service.</p>
+<div class="highlight"><pre><span></span>$ sudo systemctl start smartblock.service
+$ sudo systemctl stop smartblock.service
+</pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="./charset-handling-in-python.html" title="Charset Handling in Python">
+      <i class="fa fa-angle-left"></i>     Previous Post
+
+    </a>
+  </div>
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Jiinii.com 2018</p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " idiip site ",
+  "url" : ".",
+  "image": "https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200",
+  "description": "Python is an amazing language, so I put every stuff that can be done in Python to this site."
+}
+</script>
+
+</body>
+</html>

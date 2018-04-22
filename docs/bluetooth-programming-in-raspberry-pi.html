@@ -113,6 +113,33 @@ ExecStartPost=/bin/hciconfig hci0 piscan
 </pre></div>
 
 
+<p>The modified <code>dbus-org.bluez.service</code> is like this:</p>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Bluetooth service</span>
+<span class="na">Documentation</span><span class="o">=</span><span class="s">man:bluetoothd(8)</span>
+<span class="na">ConditionPathIsDirectory</span><span class="o">=</span><span class="s">/sys/class/bluetooth</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">dbus</span>
+<span class="na">BusName</span><span class="o">=</span><span class="s">org.bluez</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/lib/bluetooth/bluetoothd -C</span>
+<span class="na">ExecStartPost</span><span class="o">=</span><span class="s">/usr/bin/sdptool add SP</span>
+<span class="na">ExecStartPost</span><span class="o">=</span><span class="s">/bin/chmod 777 /var/run/sdp</span>
+<span class="na">ExecStartPost</span><span class="o">=</span><span class="s">/bin/hciconfig hci0 piscan</span>
+<span class="na">NotifyAccess</span><span class="o">=</span><span class="s">main</span>
+<span class="c1">#WatchdogSec=10</span>
+<span class="c1">#Restart=on-failure</span>
+<span class="na">CapabilityBoundingSet</span><span class="o">=</span><span class="s">CAP_NET_ADMIN CAP_NET_BIND_SERVICE</span>
+<span class="na">LimitNPROC</span><span class="o">=</span><span class="s">1</span>
+<span class="na">ProtectHome</span><span class="o">=</span><span class="s">true</span>
+<span class="na">ProtectSystem</span><span class="o">=</span><span class="s">full</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">bluetooth.target</span>
+<span class="na">Alias</span><span class="o">=</span><span class="s">dbus-org.bluez.service</span>
+</pre></div>
+
+
 <p>Then reboot Raspberry Pi.</p>
   </div>
   <div class="tag-cloud">
