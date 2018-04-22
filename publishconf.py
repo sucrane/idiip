@@ -13,7 +13,4 @@ from pelicanconf import *
 OUTPUT_PATH = 'docs/'
 SITEURL = 'http://www.jiinii.com/idiip'
 
-# Following items are often useful when publishing
-
-#DISQUS_SITENAME = ""
 GOOGLE_ANALYTICS = "UA-117999375-1"

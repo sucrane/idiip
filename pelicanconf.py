@@ -32,10 +32,13 @@ DEFAULT_PAGINATION = 10
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
 
+PLUGINS = ['neighbors']
+
 THEME = 'Flex'
 PYGMENTS_STYLE = 'solarized-dark'
 SITETITLE = 'idiip'
 SITESUBTITLE = 'I did it in Python.'
+SITEDESCRIPTION = 'Python is an amazing language, so I put every stuff that can be done in Python to this site.'
 SITELOGO = 'https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200'
 
 MAIN_MENU = True
