@@ -17,4 +17,4 @@ SITELOGO = SITEURL + '/images/me.png'
 # Following items are often useful when publishing
 
 #DISQUS_SITENAME = ""
-#GOOGLE_ANALYTICS = ""
+GOOGLE_ANALYTICS = "UA-117999375-1"
