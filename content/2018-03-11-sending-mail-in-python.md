@@ -1,8 +1,7 @@
 Title: Sending Mail in Python
 Date: 2018-03-11
 
-We need to send mails sometimes, e.g. report sending service. `email`
-module in Python will work this for us.
+We need to send mails sometimes, e.g. report sending service. `email` module in Python will work this for us.
 
 ```python
 from email.mime.application import MIMEApplication
