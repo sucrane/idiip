@@ -12,7 +12,6 @@ from pelicanconf import *
 
 OUTPUT_PATH = 'docs/'
 SITEURL = 'http://www.jiinii.com/idiip'
-SITELOGO = SITEURL + '/images/me.png'
 
 # Following items are often useful when publishing
 

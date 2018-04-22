@@ -36,7 +36,7 @@ THEME = 'Flex'
 PYGMENTS_STYLE = 'solarized-dark'
 SITETITLE = 'idiip'
 SITESUBTITLE = 'I did it in Python.'
-SITELOGO = SITEURL + '/images/me.png'
+SITELOGO = 'https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200'
 
 MAIN_MENU = True
 DISABLE_URL_HASH = True
