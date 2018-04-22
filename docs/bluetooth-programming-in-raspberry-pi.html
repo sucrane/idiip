@@ -32,22 +32,22 @@
 <!-- End Google Analytics -->
 
 <meta name="author" content="Su Henian" />
-<meta name="description" content="Protobuf is a method to serializing structured objects. It helps to develop applications which are communicating with each other over a wire. protoc is the code generator by reading the .proto files and it provides Python support. First, we will need to install the Protocol Buffers compiler protoc. In macOS …" />
+<meta name="description" content="Raspberry Pi Zero W comes with added wireless LAN and Bluetooth connectiviy. We can use PyBluez library to program Bluetooth in Python. In order to install PyBluez, we first need to install Bluetooth development. In Raspberry Pi, run the apt command: $ sudo apt install libbluetooth-dev Then install PyBluez using pip …" />
 <meta name="keywords" content="">
 
 <meta property="og:site_name" content="idiip site"/>
-<meta property="og:title" content="Protobuf in Python"/>
-<meta property="og:description" content="Protobuf is a method to serializing structured objects. It helps to develop applications which are communicating with each other over a wire. protoc is the code generator by reading the .proto files and it provides Python support. First, we will need to install the Protocol Buffers compiler protoc. In macOS …"/>
+<meta property="og:title" content="Bluetooth Programming in Raspberry Pi"/>
+<meta property="og:description" content="Raspberry Pi Zero W comes with added wireless LAN and Bluetooth connectiviy. We can use PyBluez library to program Bluetooth in Python. In order to install PyBluez, we first need to install Bluetooth development. In Raspberry Pi, run the apt command: $ sudo apt install libbluetooth-dev Then install PyBluez using pip …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="./protobuf-in-python.html"/>
+<meta property="og:url" content="./bluetooth-programming-in-raspberry-pi.html"/>
 <meta property="og:type" content="article"/>
-<meta property="article:published_time" content="2018-03-13 00:00:00+08:00"/>
+<meta property="article:published_time" content="2018-03-12 00:00:00+08:00"/>
 <meta property="article:modified_time" content=""/>
 <meta property="article:author" content="./author/su-henian.html">
-<meta property="article:section" content="articles"/>
+<meta property="article:section" content="raspberry-pi"/>
 <meta property="og:image" content="https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200">
 
-  <title>idiip site &ndash; Protobuf in Python</title>
+  <title>idiip site &ndash; Bluetooth Programming in Raspberry Pi</title>
 
 </head>
 <body>
@@ -79,9 +79,9 @@
 <article class="single">
   <header>
       
-    <h1 id="protobuf-in-python">Protobuf in Python</h1>
+    <h1 id="bluetooth-programming-in-raspberry-pi">Bluetooth Programming in Raspberry Pi</h1>
     <p>
-          Posted on Tue 13 March 2018 in <a href="./category/articles.html">articles</a>
+          Posted on Mon 12 March 2018 in <a href="./category/raspberry-pi.html">raspberry-pi</a>
 
 
     </p>
@@ -89,23 +89,31 @@
 
 
   <div>
-    <p><a href="https://en.wikipedia.org/wiki/Protocol_Buffers">Protobuf</a> is a method to serializing structured objects. It helps to develop applications which are communicating with each other over a wire. <code>protoc</code> is the code generator by reading the <code>.proto</code> files and it provides Python support.</p>
-<p>First, we will need to install the Protocol Buffers compiler <code>protoc</code>. In macOS, it is easy to install using <code>brew</code>:</p>
-<div class="highlight"><pre><span></span>$ brew install protobuf
+    <p><a href="https://www.raspberrypi.org/products/raspberry-pi-zero-w/">Raspberry Pi Zero W</a> comes with added wireless LAN and Bluetooth connectiviy. We can use <a href="https://pybluez.github.io/">PyBluez</a> library to program Bluetooth in Python.</p>
+<p>In order to install PyBluez, we first need to install Bluetooth development. In Raspberry Pi, run the <code>apt</code> command:</p>
+<div class="highlight"><pre><span></span>$ sudo apt install libbluetooth-dev
 </pre></div>
 
 
-<p>Then we can use <code>protoc</code> command to generate language bindings, e.g., Python:</p>
-<div class="highlight"><pre><span></span>$ protoc --python_out<span class="o">=</span>/path/to/your/dest/directory your.proto
+<p>Then install PyBluez using <code>pip</code>:</p>
+<div class="highlight"><pre><span></span>$ pip install PyBluez
 </pre></div>
 
 
-<p>And install <code>protobuf</code> runtime in Python using <code>pip</code>:</p>
-<div class="highlight"><pre><span></span>$ pip install protobuf
+<p>I am going to use Bluetooth RFCOMM to communicate with a mobile app. So I need to set up SPP (Serial Port Profile) in Raspberry Pi. But there is an issue with Bluez 5 in Raspberry Pi. To fix it, do the following:</p>
+<div class="highlight"><pre><span></span>$ sudo vi /etc/systemd/system/dbus-org.bluez.service
 </pre></div>
 
 
-<p>Make sure the runtime version is the same as <code>protoc</code> binary, or it may not work.</p>
+<p>And add the following lines:</p>
+<div class="highlight"><pre><span></span>ExecStart=/usr/lib/bluetooth/bluetoothd -C
+ExecStartPost=/usr/bin/sdptool add SP
+ExecStartPost=/bin/chmod 777 /var/run/sdp
+ExecStartPost=/bin/hciconfig hci0 piscan
+</pre></div>
+
+
+<p>Then reboot Raspberry Pi.</p>
   </div>
   <div class="tag-cloud">
     <p>
@@ -114,9 +122,13 @@
 
 
   <div class="neighbors">
-    <a class="btn float-left" href="./serial-programming-in-raspberry-pi.html" title="Serial Programming in Raspberry Pi">
+    <a class="btn float-left" href="./image-processing-in-python.html" title="Image Processing in Python">
       <i class="fa fa-angle-left"></i>     Previous Post
 
+    </a>
+    <a class="btn float-right" href="./serial-programming-in-raspberry-pi.html" title="Serial Programming in Raspberry Pi">
+          Next Post
+ <i class="fa fa-angle-right"></i>
     </a>
   </div>
 
