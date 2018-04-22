@@ -33,12 +33,12 @@ DEFAULT_PAGINATION = 10
 RELATIVE_URLS = True
 
 THEME = 'Flex'
+PYGMENTS_STYLE = 'solarized-dark'
 SITETITLE = 'idiip'
 SITESUBTITLE = 'I did it in Python.'
 SITELOGO = SITEURL + '/images/me.png'
 
 MAIN_MENU = True
 DISABLE_URL_HASH = True
-
 COPYRIGHT_NAME = 'Jiinii.com'
 COPYRIGHT_YEAR = 2018
