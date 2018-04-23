@@ -45,3 +45,7 @@ MAIN_MENU = True
 DISABLE_URL_HASH = True
 COPYRIGHT_NAME = 'Jiinii.com'
 COPYRIGHT_YEAR = 2018
+
+SOCIAL = (
+    ('github', 'https://github.com/sucrane/idiip'),
+)
