@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="./theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="./theme/pygments/solarized-dark.min.css">
+  <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-117999375-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+<meta name="author" content="Su Henian" />
+<meta name="description" content="I need to run Python 3 on an ARM board, so I need to cross compile it. To cross compile Python, we need to compile Python and Parser in the host(build) machine. $ cd $HOME $ mkdir PythonSrc $ cd PythonSrc $ wget https://www.python.org/ftp/python/3.5.5/Python-3 …" />
+<meta name="keywords" content="">
+
+<meta property="og:site_name" content="idiip site"/>
+<meta property="og:title" content="Cross Compile Python 3"/>
+<meta property="og:description" content="I need to run Python 3 on an ARM board, so I need to cross compile it. To cross compile Python, we need to compile Python and Parser in the host(build) machine. $ cd $HOME $ mkdir PythonSrc $ cd PythonSrc $ wget https://www.python.org/ftp/python/3.5.5/Python-3 …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="./cross-compile-python-3.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2018-03-22 00:00:00+08:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="./author/su-henian.html">
+<meta property="article:section" content="arm"/>
+<meta property="og:image" content="https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200">
+
+  <title>idiip site &ndash; Cross Compile Python 3</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href=".">
+        <img src="https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200" alt="idiip" title="idiip">
+      </a>
+      <h1><a href=".">idiip</a></h1>
+
+<p>I did it in Python.</p>
+
+      <ul class="social">
+        <li><a class="sc-github" href="https://github.com/sucrane/idiip" target="_blank"><i class="fa fa-github"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href=".">    Home
+</a>
+
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="cross-compile-python-3">Cross Compile Python 3</h1>
+    <p>
+          Posted on Thu 22 March 2018 in <a href="./category/arm.html">arm</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>I need to run Python 3 on an ARM board, so I need to cross compile it. To cross compile Python, we need to compile Python and Parser in the host(build) machine.</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> <span class="nv">$HOME</span>
+$ mkdir PythonSrc
+$ <span class="nb">cd</span> PythonSrc
+$ wget https://www.python.org/ftp/python/3.5.5/Python-3.5.5.tgz
+$ tar zxf Python-3.5.5.tgz
+$ mv Python-3.5.5 Python-3.5.5-host
+$ <span class="nb">cd</span> Python-3.5.5-host
+$ ./configure --prefix<span class="o">=</span><span class="nv">$HOME</span>/PythonSrc/PythonHost
+$ make python Parser/pgen
+$ make install
+</pre></div>
+
+
+<p>Then cross compile:</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> <span class="nv">$HOME</span>
+$ tar zxf Python-3.5.5.tgz
+$ <span class="nb">cd</span> Python-3.5.5
+$ <span class="nv">CC</span><span class="o">=</span>arm-linux-gnueabihf-gcc
+$ <span class="nv">CXX</span><span class="o">=</span>arm-linux-gnueabihf-g++
+$ <span class="nv">AR</span><span class="o">=</span>arm-linux-gnueabihf-ar
+$ <span class="nv">RANLIB</span><span class="o">=</span>arm-linux-gnueabihf-ranlib
+$ <span class="nv">ac_cv_file__dev_ptmx</span><span class="o">=</span>no
+$ <span class="nv">ac_cv_file__dev_ptc</span><span class="o">=</span>no
+$ <span class="nv">ac_cv_have_long_long_format</span><span class="o">=</span>yes
+$ ./configure --host<span class="o">=</span>arm-linux-gnueabihf --target<span class="o">=</span>arm-linux-gnueabihf --build<span class="o">=</span>x86_64-linux-gnu --prefix<span class="o">=</span><span class="nv">$HOME</span>/PythonSrc/PythonTarget --disable-ipv6 --enable-shared
+$
+$ <span class="nv">HOSTPYTHON</span><span class="o">=</span><span class="nv">$HOME</span>/PythonSrc/Python-3.5.5-host/python3
+$ <span class="nv">HOSTPGEN</span><span class="o">=</span><span class="nv">$HOME</span>/Python-3.5.5-host/Parser/pgen
+$ <span class="nv">BLDSHARED</span><span class="o">=</span><span class="s2">&quot;arm-linux-gnueabihf-gcc -shared&quot;</span>
+$ CROSS-COMPILE<span class="o">=</span>arm-linux-gnueabihf-
+$ <span class="nv">CROSS_COMPILE_TARGET</span><span class="o">=</span>yes
+$ <span class="nv">HOSTARCH</span><span class="o">=</span>arm-linux
+$ <span class="nv">BUILDARCH</span><span class="o">=</span>arm-linux-gnueabihf
+$ make
+$ make install
+</pre></div>
+
+
+<p>Now we get cross-compiled Python in <code>$HOME/PythonSrc/PythonTarget/</code></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="./change-your-github-repositorys-language.html" title="Change Your Github Repository's Language">
+      <i class="fa fa-angle-left"></i>     Previous Post
+
+    </a>
+  </div>
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Jiinii.com 2018</p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " idiip site ",
+  "url" : ".",
+  "image": "https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200",
+  "description": "Python is an amazing language, so I put every stuff that can be done in Python to this site."
+}
+</script>
+
+</body>
+</html>
