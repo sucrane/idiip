@@ -76,6 +76,30 @@
 
 <article>
   <header>
+    <h2><a href="../sending-mail-in-python.html">Sending Mail in Python</a></h2>
+    <p>
+          Posted on Mon 12 March 2018 in <a href="../category/articles.html">articles</a>
+
+
+
+    </p>
+  </header>
+  <div>
+      <p>We need to send mails sometimes, e.g. report sending service. <code>email</code> module in Python will work this for us.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">email.mime.application</span> <span class="kn">import</span> <span class="n">MIMEApplication</span>
+<span class="kn">from</span> <span class="nn">email.mime.multipart</span> <span class="kn">import</span> <span class="n">MIMEMultipart</span>
+<span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
+<span class="kn">from</span> <span class="nn">email.utils</span> <span class="kn">import</span> <span class="n">COMMASPACE</span><span class="p">,</span> <span class="n">formatdate</span>
+
+<span class="k">def</span> <span class="nf">send_mail</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">account</span><span class="p">,</span> <span class="n">password …</span></pre></div>
+      <br>
+      <a class="btn" href="../sending-mail-in-python.html">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="../python-anywhere.html">Python Anywhere</a></h2>
     <p>
           Posted on Sun 11 March 2018 in <a href="../category/articles.html">articles</a>
