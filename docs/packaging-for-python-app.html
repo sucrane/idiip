@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="./theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="./theme/pygments/solarized-dark.min.css">
+  <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-117999375-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+<meta name="author" content="Su Henian" />
+<meta name="description" content="It is not quite convenient for our customer to setup Python environment on Windows or other platforms to run our Python app. So we need to pack our Python app into stand-alone .exe file. Fortunately, there are quite a few tools to help us. And among these, PyInstaller is my …" />
+<meta name="keywords" content="">
+
+<meta property="og:site_name" content="idiip site"/>
+<meta property="og:title" content="Packaging for Python App"/>
+<meta property="og:description" content="It is not quite convenient for our customer to setup Python environment on Windows or other platforms to run our Python app. So we need to pack our Python app into stand-alone .exe file. Fortunately, there are quite a few tools to help us. And among these, PyInstaller is my …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="./packaging-for-python-app.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2018-03-23 00:00:00+08:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="./author/su-henian.html">
+<meta property="article:section" content="articles"/>
+<meta property="og:image" content="https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200">
+
+  <title>idiip site &ndash; Packaging for Python App</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href=".">
+        <img src="https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200" alt="idiip" title="idiip">
+      </a>
+      <h1><a href=".">idiip</a></h1>
+
+<p>I did it in Python.</p>
+
+      <ul class="social">
+        <li><a class="sc-github" href="https://github.com/sucrane/idiip" target="_blank"><i class="fa fa-github"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href=".">    Home
+</a>
+
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="packaging-for-python-app">Packaging for Python App</h1>
+    <p>
+          Posted on Fri 23 March 2018 in <a href="./category/articles.html">articles</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>It is not quite convenient for our customer to setup Python environment on Windows or other platforms to run our Python app. So we need to pack our Python app into stand-alone .exe file. Fortunately, there are quite a few tools to help us. And among these, PyInstaller is my favorite.</p>
+<p><a href="http://www.pyinstaller.org/">PyInstaller</a> is a program that freezes (packages) Python programs into stand-alone executables, under Windows, Linux, Mac OS X, FreeBSD, Solaris and AIX. Its main advantages over similar tools are that PyInstaller works with Python 2.7 and 3.3—3.6, it builds smaller executables thanks to transparent compression, it is fully multi-platform, and use the OS support to load the dynamic libraries, thus ensuring full compatibility.</p>
+<p>We can install PyInstaller using <code>pip</code>:</p>
+<div class="highlight"><pre><span></span>pip install pyinstaller
+</pre></div>
+
+
+<p>Then go to your project's directory, and run:</p>
+<div class="highlight"><pre><span></span>pyinstaller your-app.py
+</pre></div>
+
+
+<p>It will generate the bundle in a subdirectory called <code>dist</code>.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+  <div class="neighbors">
+    <a class="btn float-left" href="./cross-compile-python-3.html" title="Cross Compile Python 3">
+      <i class="fa fa-angle-left"></i>     Previous Post
+
+    </a>
+  </div>
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Jiinii.com 2018</p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " idiip site ",
+  "url" : ".",
+  "image": "https://www.gravatar.com/avatar/8b7b3f139824eb533c0650e33d44067b?s=200",
+  "description": "Python is an amazing language, so I put every stuff that can be done in Python to this site."
+}
+</script>
+
+</body>
+</html>
